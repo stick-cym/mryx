@@ -17,18 +17,20 @@
         <module name="service-sys" />
         <module name="service-user-client" />
         <module name="service-util" />
-        <module name="service-order" />
         <module name="service-activity-client" />
         <module name="service-acl" />
         <module name="service-product" />
         <module name="service-user" />
-        <module name="service-cart" />
         <module name="service-search" />
         <module name="model" />
         <module name="service-activity" />
-        <module name="service-payment" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="service-cart" target="1.5" />
+      <module name="service-order" target="1.5" />
+      <module name="service-payment" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

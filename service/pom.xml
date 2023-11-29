@@ -19,13 +19,16 @@
         <module>service-activity</module>
         <module>service-user</module>
         <module>service-home</module>
-        <module>service-cart</module>
-        <module>service-order</module>
-        <module>service-payment</module>
     </modules>
 
     <dependencies>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.16</version>
+        </dependency>
         <!--依赖服务的工具类-->
+
         <dependency>
             <groupId>com.person</groupId>
             <artifactId>service-util</artifactId>

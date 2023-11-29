@@ -10,8 +10,10 @@ import java.util.List;
 
 @FeignClient("service-search")
 public interface SkuFeignClient {
+
     @GetMapping("/api/search/sku/inner/findHotSkuList")
     List<SkuEs> findHotSkuList();
+
     @GetMapping("/api/search/sku/inner/incrHotScore/{skuId}")
     void incrHotScore(@PathVariable("skuId") Long skuId);
 }

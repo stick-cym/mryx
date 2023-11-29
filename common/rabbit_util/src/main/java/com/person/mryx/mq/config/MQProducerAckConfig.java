@@ -1,5 +1,6 @@
 package com.person.mryx.mq.config;
 
+import com.person.mryx.mq.exception.MessageNotSendException;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -34,7 +35,7 @@ public class MQProducerAckConfig implements RabbitTemplate.ReturnCallback,Rabbit
         if(ack){
             System.out.println("消息发送成功！");
         }else {
-            System.out.println("消息发送失败！"+cause);
+            throw new MessageNotSendException("消息发送失败");
         }
     }
 

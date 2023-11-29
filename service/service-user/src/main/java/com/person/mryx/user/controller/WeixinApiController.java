@@ -15,6 +15,7 @@ import com.person.mryx.user.utils.HttpClientUtils;
 import com.person.mryx.vo.user.LeaderAddressVo;
 import com.person.mryx.vo.user.UserLoginVo;
 import io.swagger.annotations.ApiOperation;
+import net.sf.jsqlparser.expression.operators.relational.IsNullExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -68,9 +69,10 @@ public class WeixinApiController {
         //3 请求微信接口服务，返回两个值 session_key 和 openid
         //// openId是你微信唯一标识
         JSONObject jsonObject = JSONObject.parseObject(result);
-        String session_key = jsonObject.getString("session_key");
+//        String session_key = jsonObject.getString("session_key");
         String openid = jsonObject.getString("openid");
-
+        if("".equals(openid)){
+        }
 //        openid = "odo3j4q2KskkbbW-krfE-cAxUnzU1";
         //4 添加微信用户信息到数据库里面
         //// 操作user表

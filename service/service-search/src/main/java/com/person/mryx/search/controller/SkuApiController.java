@@ -1,5 +1,8 @@
 package com.person.mryx.search.controller;
 
+import cn.hutool.Hutool;
+import cn.hutool.crypto.digest.MD5;
+import cn.hutool.extra.qrcode.QrCodeUtil;
 import com.person.mryx.common.result.Result;
 import com.person.mryx.model.search.SkuEs;
 import com.person.mryx.search.service.SkuService;
