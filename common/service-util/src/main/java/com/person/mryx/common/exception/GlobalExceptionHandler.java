@@ -16,9 +16,9 @@ public class GlobalExceptionHandler {
     }
 
     //自定义异常处理
-    @ExceptionHandler(SsyxException.class)
+    @ExceptionHandler(MryxException.class)
     @ResponseBody
-    public Result error(SsyxException exception) {
+    public Result error(MryxException exception) {
         return Result.build(null,exception.getCode(),exception.getMessage());
     }
 }

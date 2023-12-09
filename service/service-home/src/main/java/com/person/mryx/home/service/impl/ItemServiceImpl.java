@@ -25,6 +25,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private SkuFeignClient skuFeignClient;
+
     @Resource
     private ThreadPoolExecutor threadPoolExecutor;
     //详情

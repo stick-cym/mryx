@@ -34,6 +34,6 @@ wx:
   open:
     # 小程序微信appId
     # 小程序微信公众平台appId
-    app_id: wx4b2c53fbe820016f
+    app_id: wxe64bb1eb3bd39e0c
     # 小程序微信公众平台api秘钥
     app_secret: 5e29f17bbc5b44cdddf8120ac5487d04

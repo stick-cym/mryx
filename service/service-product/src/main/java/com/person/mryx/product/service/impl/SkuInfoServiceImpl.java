@@ -3,7 +3,7 @@ package com.person.mryx.product.service.impl;
 import com.person.mryx.product.service.SkuAttrValueService;
 import com.person.mryx.product.service.SkuPosterService;
 import com.person.mryx.common.constant.RedisConst;
-import com.person.mryx.common.exception.SsyxException;
+import com.person.mryx.common.exception.MryxException;
 import com.person.mryx.common.result.ResultCodeEnum;
 import com.person.mryx.model.product.SkuAttrValue;
 import com.person.mryx.model.product.SkuImage;
@@ -282,7 +282,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
                                 String orderNo) {
         //1 判断skuStockLockVoList集合是否为空
         if(CollectionUtils.isEmpty(skuStockLockVoList)) {
-            throw new SsyxException(ResultCodeEnum.DATA_ERROR);
+            throw new MryxException(ResultCodeEnum.DATA_ERROR);
         }
 
         //2 遍历skuStockLockVoList得到每个商品，验证库存并锁定库存，具备原子性

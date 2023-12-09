@@ -3,7 +3,7 @@ package com.person.mryx.user.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.person.mryx.common.auth.AuthContextHolder;
 import com.person.mryx.common.constant.RedisConst;
-import com.person.mryx.common.exception.SsyxException;
+import com.person.mryx.common.exception.MryxException;
 import com.person.mryx.common.result.Result;
 import com.person.mryx.common.result.ResultCodeEnum;
 import com.person.mryx.common.utils.JwtHelper;
@@ -63,7 +63,7 @@ public class WeixinApiController {
         try {
             result = HttpClientUtils.get(tokenUrl);
         } catch (Exception e) {
-            throw new SsyxException(ResultCodeEnum.FETCH_ACCESSTOKEN_FAILD);
+            throw new MryxException(ResultCodeEnum.FETCH_ACCESSTOKEN_FAILD);
         }
 
         //3 请求微信接口服务，返回两个值 session_key 和 openid

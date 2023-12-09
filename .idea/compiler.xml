@@ -11,6 +11,7 @@
         <module name="common-util" />
         <module name="service-product-client" />
         <module name="service-search-client" />
+        <module name="untitled" />
         <module name="service-gateway" />
         <module name="rabbit_util" />
         <module name="service-home" />
@@ -21,15 +22,14 @@
         <module name="service-acl" />
         <module name="service-product" />
         <module name="service-user" />
+        <module name="service-cart" />
         <module name="service-search" />
         <module name="model" />
         <module name="service-activity" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="service-cart" target="1.5" />
-      <module name="service-order" target="1.5" />
-      <module name="service-payment" target="1.5" />
+      <module name="untitled" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -41,6 +41,7 @@
       <module name="service-acl" options="-parameters" />
       <module name="service-activity" options="-parameters" />
       <module name="service-activity-client" options="-parameters" />
+      <module name="service-cart" options="-parameters" />
       <module name="service-client" options="-parameters" />
       <module name="service-gateway" options="-parameters" />
       <module name="service-home" options="-parameters" />
@@ -52,6 +53,7 @@
       <module name="service-user" options="-parameters" />
       <module name="service-user-client" options="-parameters" />
       <module name="service-util" options="-parameters" />
+      <module name="untitled" options="-parameters" />
     </option>
   </component>
 </project>

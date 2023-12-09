@@ -40,8 +40,8 @@ public class UserLoginInterceptor implements HandlerInterceptor {
                                         .get(RedisConst.USER_LOGIN_KEY_PREFIX + userId);
             //获取数据放到ThreadLocal里面
             if(userLoginVo != null) {
-                System.out.println("UserLoginInterceptor="+userLoginVo.getUserId()+"----------"
-                + userLoginVo.getWareId());
+//                System.out.println("UserLoginInterceptor="+userLoginVo.getUserId()+"----------"
+//                + userLoginVo.getWareId());
                 AuthContextHolder.setUserId(userLoginVo.getUserId());
                 AuthContextHolder.setWareId(userLoginVo.getWareId());
                 AuthContextHolder.setUserLoginVo(userLoginVo);

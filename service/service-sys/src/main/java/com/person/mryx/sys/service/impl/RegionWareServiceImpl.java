@@ -1,6 +1,6 @@
 package com.person.mryx.sys.service.impl;
 
-import com.person.mryx.common.exception.SsyxException;
+import com.person.mryx.common.exception.MryxException;
 import com.person.mryx.common.result.ResultCodeEnum;
 import com.person.mryx.model.sys.RegionWare;
 import com.person.mryx.sys.mapper.RegionWareMapper;
@@ -56,7 +56,7 @@ public class RegionWareServiceImpl extends ServiceImpl<RegionWareMapper, RegionW
         Integer count = baseMapper.selectCount(wrapper);
         if(count > 0) { //已经存在
             //抛出自定义异常
-            throw new SsyxException(ResultCodeEnum.REGION_OPEN);
+            throw new MryxException(ResultCodeEnum.REGION_OPEN);
         }
         baseMapper.insert(regionWare);
     }

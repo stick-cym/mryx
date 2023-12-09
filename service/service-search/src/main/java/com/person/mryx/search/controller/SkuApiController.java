@@ -1,8 +1,5 @@
 package com.person.mryx.search.controller;
 
-import cn.hutool.Hutool;
-import cn.hutool.crypto.digest.MD5;
-import cn.hutool.extra.qrcode.QrCodeUtil;
 import com.person.mryx.common.result.Result;
 import com.person.mryx.model.search.SkuEs;
 import com.person.mryx.search.service.SkuService;
@@ -31,8 +28,8 @@ public class SkuApiController {
                           @PathVariable Integer limit,
                           SkuEsQueryVo skuEsQueryVo) {
         //创建pageable对象，0代表第一页
-        Pageable pageable = PageRequest.of(page-1,limit);
-        Page<SkuEs> pageModel = skuService.search(pageable,skuEsQueryVo);
+        Pageable pageable = PageRequest.of(page - 1, limit);
+        Page<SkuEs> pageModel = skuService.search(pageable, skuEsQueryVo);
         return Result.ok(pageModel);
     }
 
@@ -57,7 +54,7 @@ public class SkuApiController {
     }
 
     //更新商品热度
-        @GetMapping("inner/incrHotScore/{skuId}")
+    @GetMapping("inner/incrHotScore/{skuId}")
     public Boolean incrHotScore(@PathVariable("skuId") Long skuId) {
         skuService.incrHotScore(skuId);
         return true;
