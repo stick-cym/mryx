@@ -9,6 +9,7 @@ import com.person.mryx.model.order.CartInfo;
 import com.person.mryx.vo.order.OrderConfirmVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,28 @@ public class CartApiController {
 
     @Autowired
     private ActivityFeignClient activityFeignClient;
+
+    //选中指定商品的状态
+    @GetMapping("checkCart/{skuId}/{isChecked}")
+    public Result checkCart(@PathVariable Long skuId,@PathVariable  Integer isChecked){
+        cartInfoService.checkCart(AuthContextHolder.getUserId(),skuId,isChecked);
+        return Result.ok(null);
+    }
+
+    //选中全部商品的状态
+    @GetMapping("/cart/checkAllCart/{isChecked}")
+    public Result checkAllCart(@PathVariable Integer isChecked){
+        cartInfoService.checkAllCart(AuthContextHolder.getUserId(),isChecked);
+        return Result.ok(null);
+    }
+
+    //批量修改商品的状态/cart/batchCheckCart
+    @PostMapping("/cart/batchCheckCart/{isChecked}")
+    public Result batchCheckCart(@PathVariable Integer isChecked,@RequestBody List<Long> skuIdList){
+        cartInfoService.batchCheckCart(skuIdList,AuthContextHolder.getUserId(),isChecked);
+        return Result.ok(null);
+    }
+
     //添加商品到购物车
     //添加内容：当前登录用户id，skuId，商品数量
     @ApiOperation(value = "添加商品到购物车")

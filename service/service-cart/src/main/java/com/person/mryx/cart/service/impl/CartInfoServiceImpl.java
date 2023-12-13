@@ -36,15 +36,6 @@ public class CartInfoServiceImpl implements CartInfoService {
     private RedisTemplate redisTemplate;
     @Autowired
     private ProductFeignClient productFeignClient;
-
-    //返回购物车在redis的key
-    private String getCartKey(Long userId) {
-        // user:userId:cart
-        return RedisConst.USER_KEY_PREFIX + userId + RedisConst.USER_CART_KEY_SUFFIX;
-    }
-
-
-
     //添加商品到购物车
     @Override
     public void addToCart(Long userId, Long skuId, Integer skuNum) {
@@ -257,4 +248,11 @@ public class CartInfoServiceImpl implements CartInfoService {
     private void setCartKeyExpire(String key) {
         redisTemplate.expire(key, RedisConst.USER_CART_EXPIRE, TimeUnit.SECONDS);
     }
+
+    //返回购物车在redis的key
+    private String getCartKey(Long userId) {
+        // user:userId:cart
+        return RedisConst.USER_KEY_PREFIX + userId + RedisConst.USER_CART_KEY_SUFFIX;
+    }
+
 }

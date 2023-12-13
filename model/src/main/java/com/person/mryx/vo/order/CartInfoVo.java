@@ -9,11 +9,8 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * <p>
- * OrderDetailActivity
- * </p>
- *
- * @author qy
+ * @author 86176
+ * @date 2023/12/11
  */
 @Data
 public class CartInfoVo implements Serializable {
