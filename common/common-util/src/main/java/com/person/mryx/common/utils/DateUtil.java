@@ -120,7 +120,7 @@ public class DateUtil {
         instance.set(Calendar.SECOND, 59);
         Date endTime = instance.getTime();
         //当前时间与截止时间间隔，单位：秒
-        long interval = (endTime.getTime() - new Date().getTime())/1000;
+        long interval = (endTime.getTime() - System.currentTimeMillis())/1000;
         return 100*60*60*24*365L;
     }
 }

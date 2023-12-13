@@ -55,7 +55,7 @@ public class JwtHelper {
     }
 
     public static void main(String[] args) {
-
+        System.out.println(createToken((long) 42, "微信用户"));
 
     }
 

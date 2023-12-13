@@ -52,7 +52,7 @@ public class MQProducerAckConfig implements RabbitTemplate.ReturnCallback,Rabbit
         System.out.println("消息主体: " + new String(message.getBody()));
         System.out.println("应答码: " + replyCode);
         System.out.println("描述：" + replyText);
-        System.out.println("消息使用的交换器 exchange : " + exchange);
+        System.out.println("消息使用的交换器 exchange :" + exchange);
         System.out.println("消息使用的路由键 routing : " + routingKey);
     }
 }

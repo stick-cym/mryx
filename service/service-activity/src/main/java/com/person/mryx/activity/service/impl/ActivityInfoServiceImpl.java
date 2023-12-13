@@ -29,6 +29,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
@@ -89,7 +90,7 @@ public class ActivityInfoServiceImpl extends ServiceImpl<ActivityInfoMapper, Act
         //一个规则对应多个商品
         List<CartInfoVo> cartInfoVoList = this.findCartActivityList(cartInfoList);
 
-        //2 计算参与活动之后金额
+        //2 计算参与活动之后优惠的金额
         BigDecimal activityReduceAmount = cartInfoVoList.stream()
                 .filter(cartInfoVo -> cartInfoVo.getActivityRule() != null)
                 .map(cartInfoVo -> cartInfoVo.getActivityRule().getReduceAmount())
@@ -233,7 +234,6 @@ public class ActivityInfoServiceImpl extends ServiceImpl<ActivityInfoMapper, Act
                 cartInfoVoList.add(cartInfoVo);
             }
         }
-
         return cartInfoVoList;
     }
 
@@ -332,6 +332,7 @@ public class ActivityInfoServiceImpl extends ServiceImpl<ActivityInfoMapper, Act
         return optimalActivityRule;
     }
 
+    //计算购物车总价格
     private BigDecimal computeTotalAmount(List<CartInfo> cartInfoList) {
         BigDecimal total = new BigDecimal("0");
         for (CartInfo cartInfo : cartInfoList) {
@@ -344,6 +345,7 @@ public class ActivityInfoServiceImpl extends ServiceImpl<ActivityInfoMapper, Act
         return total;
     }
 
+    //计算购物车总数量
     private int computeCartNum(List<CartInfo> cartInfoList) {
         int total = 0;
         for (CartInfo cartInfo : cartInfoList) {

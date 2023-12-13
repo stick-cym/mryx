@@ -15,6 +15,7 @@ import com.person.mryx.user.utils.HttpClientUtils;
 import com.person.mryx.vo.user.LeaderAddressVo;
 import com.person.mryx.vo.user.UserLoginVo;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import net.sf.jsqlparser.expression.operators.relational.IsNullExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -24,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/user/weixin")
 public class WeixinApiController {
@@ -71,8 +73,6 @@ public class WeixinApiController {
         JSONObject jsonObject = JSONObject.parseObject(result);
 //        String session_key = jsonObject.getString("session_key");
         String openid = jsonObject.getString("openid");
-        if("".equals(openid)){
-        }
 //        openid = "odo3j4q2KskkbbW-krfE-cAxUnzU1";
         //4 添加微信用户信息到数据库里面
         //// 操作user表
@@ -107,7 +107,7 @@ public class WeixinApiController {
 
         //8 需要数据封装到map返回
         Map<String,Object> map = new HashMap<>();
-        map.put("user",user);
+        map.put("userInfo",user);
         map.put("token",token);
         map.put("leaderAddressVo",leaderAddressVo);
         return Result.ok(map);
@@ -116,6 +116,7 @@ public class WeixinApiController {
     @PostMapping("/auth/updateUser")
     @ApiOperation(value = "更新用户昵称与头像")
     public Result updateUser(@RequestBody User user) {
+        log.info("user={}",user);
         //获取当前登录用户id
         User user1 = userService.getById(AuthContextHolder.getUserId());
         //把昵称更新为微信用户
