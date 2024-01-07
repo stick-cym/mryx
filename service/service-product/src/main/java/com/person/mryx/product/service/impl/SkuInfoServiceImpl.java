@@ -218,17 +218,15 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
     //根据skuId列表得到sku信息列表
     @Override
     public List<SkuInfo> findSkuInfoList(List<Long> skuIdList) {
-        List<SkuInfo> skuInfoList = baseMapper.selectBatchIds(skuIdList);
-        return skuInfoList;
+        return baseMapper.selectBatchIds(skuIdList);
     }
 
     //根据关键字匹配sku列表
     @Override
     public List<SkuInfo> findSkuInfoByKeyword(String keyword) {
-        List<SkuInfo> skuInfoList = baseMapper.selectList(
+        return baseMapper.selectList(
                 new LambdaQueryWrapper<SkuInfo>().like(SkuInfo::getSkuName, keyword)
         );
-        return skuInfoList;
     }
 
     //获取新人专享商品
@@ -246,8 +244,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
         wrapper.orderByDesc(SkuInfo::getStock);//库存排序
         //调用方法查询
         IPage<SkuInfo> skuInfoPage = baseMapper.selectPage(pageParam, wrapper);
-        List<SkuInfo> skuInfoList = skuInfoPage.getRecords();
-        return skuInfoList;
+        return skuInfoPage.getRecords();
     }
 
     //根据skuId获取sku信息
@@ -296,17 +293,15 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
         if(flag) {
             //所有锁定成功的商品都解锁
             skuStockLockVoList.stream().filter(SkuStockLockVo::getIsLock)
-                    .forEach(skuStockLockVo -> {
-                        baseMapper.unlockStock(skuStockLockVo.getSkuId(),
-                                skuStockLockVo.getSkuNum());
-                    });
+                    .forEach(skuStockLockVo -> baseMapper.unlockStock(skuStockLockVo.getSkuId(),
+                            skuStockLockVo.getSkuNum()));
             //返回失败的状态
             return false;
         }
 
         //4 如果所有商品都锁定成功了，redis缓存相关数据，为了方便后面解锁和减库存
         redisTemplate.opsForValue()
-                .set(RedisConst.SROCK_INFO+orderNo,skuStockLockVoList);
+                .set(RedisConst.STOCK_INFO+orderNo,skuStockLockVoList);
         return true;
     }
 
@@ -315,7 +310,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
     public void minusStock(String orderNo) {
         //从redis获取锁定库存信息
         List<SkuStockLockVo> skuStockLockVoList =
-                (List<SkuStockLockVo>)redisTemplate.opsForValue().get(RedisConst.SROCK_INFO + orderNo);
+                (List<SkuStockLockVo>)redisTemplate.opsForValue().get(RedisConst.STOCK_INFO + orderNo);
         if(CollectionUtils.isEmpty(skuStockLockVoList)) {
             return;
         }
@@ -325,7 +320,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
         });
 
         //删除redis数据
-        redisTemplate.delete(RedisConst.SROCK_INFO + orderNo);
+        redisTemplate.delete(RedisConst.STOCK_INFO + orderNo);
     }
 
     //2 遍历skuStockLockVoList得到每个商品，验证库存并锁定库存，具备原子性
@@ -336,7 +331,6 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
                 this.redissonClient.getFairLock(RedisConst.SKUKEY_PREFIX + skuStockLockVo.getSkuId());
         //加锁
         rLock.lock();
-
         try {
             //验证库存
             SkuInfo skuInfo =

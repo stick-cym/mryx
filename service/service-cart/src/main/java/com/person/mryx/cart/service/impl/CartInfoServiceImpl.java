@@ -47,7 +47,7 @@ public class CartInfoServiceImpl implements CartInfoService {
                 redisTemplate.boundHashOps(cartKey);
 
         //2 根据第一步查询出来的结果，得到是skuId + skuNum关系
-        CartInfo cartInfo = null;
+        CartInfo cartInfo;
         //目的：判断是否是第一次添加这个商品到购物车
         // 进行判断，判断结果里面，是否有skuId
         if (hashOperations.hasKey(skuId.toString())) {
@@ -136,9 +136,7 @@ public class CartInfoServiceImpl implements CartInfoService {
         String cartKey = this.getCartKey(userId);
         BoundHashOperations<String, String, CartInfo> hashOperations =
                 redisTemplate.boundHashOps(cartKey);
-        skuIdList.forEach(skuId -> {
-            hashOperations.delete(skuId.toString());
-        });
+        skuIdList.forEach(skuId -> hashOperations.delete(skuId.toString()));
     }
     //购物车列表
     @Override
@@ -217,7 +215,7 @@ public class CartInfoServiceImpl implements CartInfoService {
         List<CartInfo> cartInfoList = boundHashOperations.values();
         //isChecked = 1购物项选中
         List<CartInfo> cartInfoListNew = cartInfoList.stream()
-                .filter(cartInfo -> cartInfo.getIsChecked().intValue() == 1).collect(Collectors.toList());
+                .filter(cartInfo -> cartInfo.getIsChecked() == 1).collect(Collectors.toList());
         return cartInfoListNew;
     }
 
@@ -239,9 +237,7 @@ public class CartInfoServiceImpl implements CartInfoService {
                 redisTemplate.boundHashOps(cartKey);
 
         //根据filed（skuId）删除redis数据
-        skuIdList.forEach(skuId -> {
-            hashOperations.delete(skuId.toString());
-        });
+        skuIdList.forEach(skuId -> hashOperations.delete(skuId.toString()));
     }
 
     //设置key 过期时间

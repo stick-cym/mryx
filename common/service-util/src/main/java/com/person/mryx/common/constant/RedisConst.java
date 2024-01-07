@@ -22,7 +22,7 @@ public class RedisConst {
     public static final String USER_KEY_PREFIX = "user:";
     public static final String USER_CART_KEY_SUFFIX = ":cart";
     public static final long USER_CART_EXPIRE = 60 * 60 * 24 * 7;
-    public static final String SROCK_INFO = "stock:info:";
+    public static final String STOCK_INFO = "stock:info:";
     public static final String ORDER_REPEAT = "order:repeat:";
 
     //用户登录
@@ -41,5 +41,5 @@ public class RedisConst {
     public static final String SECKILL_STOCK_PREFIX = "seckill:stock:";
     public static final String SECKILL_USER = "seckill:user:";
     //用户锁定时间 单位：秒
-    public static final int SECKILL__TIMEOUT = 60 * 60 * 1;
+    public static final int SECKILL__TIMEOUT = 60 * 60;
 }
