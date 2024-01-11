@@ -9,17 +9,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service-cart</artifactId>
-
+    <artifactId>service-payment</artifactId>
     <dependencies>
         <dependency>
-            <groupId>com.person</groupId>
-            <artifactId>service-product-client</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>com.github.wxpay</groupId>
+            <artifactId>wxpay-sdk</artifactId>
+            <version>0.0.3</version>
         </dependency>
         <dependency>
             <groupId>com.person</groupId>
-            <artifactId>service-activity-client</artifactId>
+            <artifactId>service-order-client</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -28,5 +27,4 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
 </project>

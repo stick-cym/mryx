@@ -15,6 +15,7 @@
         <module name="service-gateway" />
         <module name="rabbit_util" />
         <module name="service-home" />
+        <module name="service-order-client" />
         <module name="service-sys" />
         <module name="service-user-client" />
         <module name="service-util" />
@@ -28,6 +29,7 @@
         <module name="model" />
         <module name="service-cart-client" />
         <module name="service-activity" />
+        <module name="service-payment" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -49,6 +51,8 @@
       <module name="service-gateway" options="-parameters" />
       <module name="service-home" options="-parameters" />
       <module name="service-order" options="-parameters" />
+      <module name="service-order-client" options="-parameters" />
+      <module name="service-payment" options="-parameters" />
       <module name="service-product" options="-parameters" />
       <module name="service-product-client" options="-parameters" />
       <module name="service-search" options="-parameters" />

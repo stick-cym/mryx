@@ -18,7 +18,6 @@ public class LeaderAddressApiController {
     //根据userId查询提货点和团长信息
     @GetMapping("/inner/getUserAddressByUserId/{userId}")
     public LeaderAddressVo getUserAddressByUserId(@PathVariable("userId") Long userId) {
-        LeaderAddressVo leaderAddress = userService.getLeaderAddressByUserId(userId);
-        return leaderAddress;
+        return userService.getLeaderAddressByUserId(userId);
     }
 }

@@ -19,27 +19,27 @@ public interface ActivityFeignClient {
 
     //获取购物车里面满足条件优惠卷和活动的信息
     @PostMapping("/api/activity/inner/findCartActivityAndCoupon/{userId}")
-    public OrderConfirmVo findCartActivityAndCoupon(@RequestBody List<CartInfo> cartInfoList,
+    OrderConfirmVo findCartActivityAndCoupon(@RequestBody List<CartInfo> cartInfoList,
                                                     @PathVariable("userId") Long userId);
 
     @ApiOperation("根据skuID获取营销数据和优惠卷")
     @GetMapping("/api/activity/inner/findActivityAndCoupon/{skuId}/{userId}")
-    public Map<String,Object> findActivityAndCoupon(@PathVariable("skuId") Long skuId,
+    Map<String,Object> findActivityAndCoupon(@PathVariable("skuId") Long skuId,
                                                     @PathVariable("userId") Long userId);
 
     @PostMapping("/api/activity/inner/findActivity")
-    public Map<Long, List<String>> findActivity(@RequestBody List<Long> skuIdList);
+    Map<Long, List<String>> findActivity(@RequestBody List<Long> skuIdList);
 
     @PostMapping("/api/activity/inner/findRangeSkuIdList/{couponId}")
-    public CouponInfo findRangeSkuIdList(@RequestBody List<CartInfo> cartInfoList,
+    CouponInfo findRangeSkuIdList(@RequestBody List<CartInfo> cartInfoList,
                                          @PathVariable("couponId") Long couponId);
 
     @GetMapping("/api/activity/inner/updateCouponInfoUseStatus/{couponId}/{userId}/{orderId}")
-    public Boolean updateCouponInfoUseStatus(@PathVariable("couponId") Long couponId,
+    Boolean updateCouponInfoUseStatus(@PathVariable("couponId") Long couponId,
                                              @PathVariable("userId") Long userId,
                                              @PathVariable("orderId") Long orderId);
 
     //获取购物车对应规则数据
     @PostMapping("/api/activity/inner/findCartActivityList")
-    public List<CartInfoVo> findCartActivityList(@RequestBody List<CartInfo> cartInfoList);
+    List<CartInfoVo> findCartActivityList(@RequestBody List<CartInfo> cartInfoList);
 }

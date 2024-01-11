@@ -9,8 +9,9 @@ public enum SkuType {
     SECKILL(1,"秒杀" );
 
     @EnumValue
-    private Integer code ;
-    private String comment ;
+    private final Integer code ;
+
+    private final String comment ;
 
     SkuType(Integer code, String comment ){
         this.code=code;
